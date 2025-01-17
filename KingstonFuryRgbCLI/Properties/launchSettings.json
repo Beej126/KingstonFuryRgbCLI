@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "KingstonFuryRgbCLI": {
+      "commandName": "Project",
+      "commandLineArgs": "-setrgb=all_off"
+    }
+  }
+}

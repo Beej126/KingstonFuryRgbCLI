@@ -1,2 +1,4 @@
-FuryControllerService/obj
-FuryControllerService/bin
+obj
+bin
+.vs
+*.csproj.user
