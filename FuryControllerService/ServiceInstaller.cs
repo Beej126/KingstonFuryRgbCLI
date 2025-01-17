@@ -120,7 +120,7 @@ namespace FuryControllerService
 				{
 					throw new ApplicationException("Failed to install service.");
 				}
-				ServiceInstaller.SERVICE_DESCRIPTION service_DESCRIPTION = default(ServiceInstaller.SERVICE_DESCRIPTION);
+				ServiceInstaller.SERVICE_DESCRIPTION service_DESCRIPTION = default;
 				service_DESCRIPTION.lpDescription = serviceName;
 				ServiceInstaller.ChangeServiceConfig2(intPtr2, ServiceInstaller.ServiceInfoLevel.SERVICE_CONFIG_DESCRIPTION, ref service_DESCRIPTION);
 				try

@@ -19,7 +19,7 @@ namespace TaskScheduler
 		// Token: 0x17000060 RID: 96
 		// (get) Token: 0x060001D2 RID: 466
 		[DispId(0)]
-		[IndexerName("Path")]
+		//[IndexerName("Path")]
 		string Path
 		{
 			[DispId(0)]

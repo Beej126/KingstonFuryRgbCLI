@@ -62,7 +62,7 @@ namespace FuryControllerService
 		}
 
 		// Token: 0x0600013C RID: 316 RVA: 0x000087B4 File Offset: 0x000069B4
-		public int setDRAMCmdObj(DRAMCmdObj _obj)
+		public int SetDRAMCmdObj(DRAMCmdObj _obj)
 		{
 			if (this.dDRAMInfos != null && this.dDRAMInfos.Count > 0)
 			{
@@ -92,7 +92,7 @@ namespace FuryControllerService
 		}
 
 		// Token: 0x0600013D RID: 317 RVA: 0x000088A9 File Offset: 0x00006AA9
-		public DRAMCmdObj getDRAMCmdObj()
+		public DRAMCmdObj GetDRAMCmdObj()
 		{
 			if (this._DRAMCmdObj_v2 != null)
 			{
@@ -106,13 +106,13 @@ namespace FuryControllerService
 		}
 
 		// Token: 0x0600013E RID: 318 RVA: 0x000088CC File Offset: 0x00006ACC
-		public bool applyDRAMLEDmode(int iAPIVer, bool bResume = false)
+		public bool ApplyDRAMLEDmode(int iAPIVer, bool bResume = false)
 		{
 			if (iAPIVer == 1 && this._DRAMCmdObj_v1 != null && !string.IsNullOrEmpty(this._DRAMCmdObj_v1.ctrl_settings.mode) && !string.IsNullOrEmpty(this._DRAMCmdObj_v1.ctrl_settings.ctrl_mode))
 			{
 				try
 				{
-					if (Native.WaitForSingleObject(FuryContorller_Service.IntPtr_DRAM, 3000U) == 0U)
+					if (Native.WaitForSingleObject(FuryController_Service.IntPtr_DRAM, 3000U) == 0U)
 					{
 						Class_DLL.ParameterStart();
 						LEDmode ledmode = (LEDmode)Enum.Parse(typeof(LEDmode), this._DRAMCmdObj_v1.ctrl_settings.mode, true);
@@ -161,11 +161,11 @@ namespace FuryControllerService
 				}
 				finally
 				{
-					if (FuryContorller_Service.IntPtr_DRAM != IntPtr.Zero)
+					if (FuryController_Service.IntPtr_DRAM != IntPtr.Zero)
 					{
 						try
 						{
-							Native.ReleaseMutex(FuryContorller_Service.IntPtr_DRAM);
+							Native.ReleaseMutex(FuryController_Service.IntPtr_DRAM);
 						}
 						catch (Exception)
 						{
@@ -178,7 +178,7 @@ namespace FuryControllerService
 			{
 				try
 				{
-					if (Native.WaitForSingleObject(FuryContorller_Service.IntPtr_DRAM, 3000U) == 0U)
+					if (Native.WaitForSingleObject(FuryController_Service.IntPtr_DRAM, 3000U) == 0U)
 					{
 						try
 						{
@@ -467,11 +467,11 @@ namespace FuryControllerService
 				}
 				finally
 				{
-					if (FuryContorller_Service.IntPtr_DRAM != IntPtr.Zero)
+					if (FuryController_Service.IntPtr_DRAM != IntPtr.Zero)
 					{
 						try
 						{
-							Native.ReleaseMutex(FuryContorller_Service.IntPtr_DRAM);
+							Native.ReleaseMutex(FuryController_Service.IntPtr_DRAM);
 						}
 						catch (Exception)
 						{
@@ -484,13 +484,13 @@ namespace FuryControllerService
 		}
 
 		// Token: 0x0600013F RID: 319 RVA: 0x0000980C File Offset: 0x00007A0C
-		public bool setDRAMDDR5_AllOff()
+		public bool SetDRAMDDR5_AllOff()
 		{
 			if (this.dDRAMInfos != null && this.dDRAMInfos.Count > 0)
 			{
 				try
 				{
-					if (Native.WaitForSingleObject(FuryContorller_Service.IntPtr_DRAM, 3000U) == 0U)
+					if (Native.WaitForSingleObject(FuryController_Service.IntPtr_DRAM, 3000U) == 0U)
 					{
 						try
 						{
@@ -519,11 +519,11 @@ namespace FuryControllerService
 				}
 				finally
 				{
-					if (FuryContorller_Service.IntPtr_DRAM != IntPtr.Zero)
+					if (FuryController_Service.IntPtr_DRAM != IntPtr.Zero)
 					{
 						try
 						{
-							Native.ReleaseMutex(FuryContorller_Service.IntPtr_DRAM);
+							Native.ReleaseMutex(FuryController_Service.IntPtr_DRAM);
 						}
 						catch (Exception)
 						{
@@ -535,13 +535,13 @@ namespace FuryControllerService
 		}
 
 		// Token: 0x06000140 RID: 320 RVA: 0x00009954 File Offset: 0x00007B54
-		public bool setDRAMDDR5_DefaultRainbow()
+		public bool SetDRAMDDR5_DefaultRainbow()
 		{
 			if (this.dDRAMInfos != null && this.dDRAMInfos.Count > 0)
 			{
 				try
 				{
-					if (Native.WaitForSingleObject(FuryContorller_Service.IntPtr_DRAM, 3000U) == 0U)
+					if (Native.WaitForSingleObject(FuryController_Service.IntPtr_DRAM, 3000U) == 0U)
 					{
 						try
 						{
@@ -577,11 +577,11 @@ namespace FuryControllerService
 				}
 				finally
 				{
-					if (FuryContorller_Service.IntPtr_DRAM != IntPtr.Zero)
+					if (FuryController_Service.IntPtr_DRAM != IntPtr.Zero)
 					{
 						try
 						{
-							Native.ReleaseMutex(FuryContorller_Service.IntPtr_DRAM);
+							Native.ReleaseMutex(FuryController_Service.IntPtr_DRAM);
 						}
 						catch (Exception)
 						{
@@ -593,13 +593,13 @@ namespace FuryControllerService
 		}
 
 		// Token: 0x06000141 RID: 321 RVA: 0x00009B0C File Offset: 0x00007D0C
-		public bool setDRAMDDR5_DefaultRacing()
+		public bool SetDRAMDDR5_DefaultRacing()
 		{
 			if (this.dDRAMInfos != null && this.dDRAMInfos.Count > 0)
 			{
 				try
 				{
-					if (Native.WaitForSingleObject(FuryContorller_Service.IntPtr_DRAM, 3000U) == 0U)
+					if (Native.WaitForSingleObject(FuryController_Service.IntPtr_DRAM, 3000U) == 0U)
 					{
 						try
 						{
@@ -638,11 +638,11 @@ namespace FuryControllerService
 				}
 				finally
 				{
-					if (FuryContorller_Service.IntPtr_DRAM != IntPtr.Zero)
+					if (FuryController_Service.IntPtr_DRAM != IntPtr.Zero)
 					{
 						try
 						{
-							Native.ReleaseMutex(FuryContorller_Service.IntPtr_DRAM);
+							Native.ReleaseMutex(FuryController_Service.IntPtr_DRAM);
 						}
 						catch (Exception)
 						{
@@ -723,7 +723,7 @@ namespace FuryControllerService
 		}
 
 		// Token: 0x040000FC RID: 252
-		private Dictionary<string, DRAMInfoObj> dDRAMInfos;
+		private readonly Dictionary<string, DRAMInfoObj> dDRAMInfos;
 
 		// Token: 0x040000FD RID: 253
 		public DRAMCmdObj _DRAMCmdObj_v1;
@@ -741,7 +741,7 @@ namespace FuryControllerService
 		public static List<int> bDRAMMasterSlave_v2 = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0 };
 
 		// Token: 0x04000102 RID: 258
-		private static bool bIsAM4 = false;
+		//private static bool bIsAM4 = false;
 
 		// Token: 0x04000103 RID: 259
 		public static List<DDR5LEDmode> _mode = new List<DDR5LEDmode>

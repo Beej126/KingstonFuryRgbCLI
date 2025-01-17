@@ -1,100 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <ProjectGuid>{EDCFF8E5-FF33-4827-B17C-24A396F2214E}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <RootNamespace>FuryControllerService</RootNamespace>
-    <AssemblyName>FuryControllerService</AssemblyName>
-    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-    <FileAlignment>512</FileAlignment>
-    <TargetFramework>net472</TargetFramework>
-    <Prefer32Bit>True</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <EnableDefaultItems>False</EnableDefaultItems>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
-    <StartupObject>FuryControllerService.Program</StartupObject>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="all_off_mode.cs" />
-    <Compile Include="blink_mode.cs" />
-    <Compile Include="breath_mode.cs" />
-    <Compile Include="Class_DLL.cs" />
-    <Compile Include="Class_Mutex.cs" />
-    <Compile Include="color_cycle_mode.cs" />
-    <Compile Include="CTRLmode.cs" />
-    <Compile Include="DDR5LEDmode.cs" />
-    <Compile Include="ddr5_breath_mode.cs" />
-    <Compile Include="ddr5_comet_mode.cs" />
-    <Compile Include="ddr5_count_down_mode.cs" />
-    <Compile Include="ddr5_dynamic_color_mode.cs" />
-    <Compile Include="ddr5_ecg_mode.cs" />
-    <Compile Include="ddr5_electric_current_mode.cs" />
-    <Compile Include="ddr5_flame_mode.cs" />
-    <Compile Include="ddr5_fury_mode.cs" />
-    <Compile Include="ddr5_rainbow_mode.cs" />
-    <Compile Include="ddr5_running_mode.cs" />
-    <Compile Include="ddr5_starry_sky_mode.cs" />
-    <Compile Include="ddr5_static_color_mode.cs" />
-    <Compile Include="double_blink_mode.cs" />
-    <Compile Include="DRAMCmdObj.cs" />
-    <Compile Include="DRAMCtrlColorObj.cs" />
-    <Compile Include="DRAMCtrlObj.cs" />
-    <Compile Include="DRAMDDR5CtrlObj.cs" />
-    <Compile Include="DRAMInfoObj.cs" />
-    <Compile Include="DRAMInfoObj_v2.cs" />
-    <Compile Include="DRAMJsonRoot.cs" />
-    <Compile Include="DRAMKernelInfo.cs" />
-    <Compile Include="DRAMTimingsObj.cs" />
-    <Compile Include="DRAMTimingTableObj.cs" />
-    <Compile Include="FuryContorller_Service.cs" />
-    <Compile Include="JsonClass.cs" />
-    <Compile Include="KeepData.cs" />
-    <Compile Include="KSDRAMSMBusCtrlObj.cs" />
-    <Compile Include="LEDmode.cs" />
-    <Compile Include="Log.cs" />
-    <Compile Include="meteor_mode.cs" />
-    <Compile Include="Miscellaneous.cs" />
-    <Compile Include="Native.cs" />
-    <Compile Include="NotifyBehavior.cs" />
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="rainbow_mode.cs" />
-    <Compile Include="running_mode.cs" />
-    <Compile Include="ServiceInstaller.cs" />
-    <Compile Include="static_color_mode.cs" />
-    <Compile Include="StringEncryptDecrypt.cs" />
-    <Compile Include="TaskScheduler\IAction.cs" />
-    <Compile Include="TaskScheduler\IActionCollection.cs" />
-    <Compile Include="TaskScheduler\IExecAction.cs" />
-    <Compile Include="TaskScheduler\IPrincipal.cs" />
-    <Compile Include="TaskScheduler\IRegisteredTask.cs" />
-    <Compile Include="TaskScheduler\IRegisteredTaskCollection.cs" />
-    <Compile Include="TaskScheduler\IRegistrationInfo.cs" />
-    <Compile Include="TaskScheduler\IRunningTask.cs" />
-    <Compile Include="TaskScheduler\ITaskDefinition.cs" />
-    <Compile Include="TaskScheduler\ITaskFolder.cs" />
-    <Compile Include="TaskScheduler\ITaskService.cs" />
-    <Compile Include="TaskScheduler\ITaskSettings.cs" />
-    <Compile Include="TaskScheduler\TaskScheduler.cs" />
-    <Compile Include="TaskScheduler\_TASK_ACTION_TYPE.cs" />
-    <Compile Include="TaskScheduler\_TASK_LOGON_TYPE.cs" />
-    <Compile Include="TaskScheduler\_TASK_RUNLEVEL.cs" />
-    <Compile Include="TaskScheduler\_TASK_STATE.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="FuryContorller_Service.resources" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System.Core" />
-    <Reference Include="System.Management" />
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="websocket-sharp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.manifest" />
-  </ItemGroup>
+	<PropertyGroup>
+		<ProjectGuid>{2572D5EA-4D7C-4FDA-88E2-AAA3FD5087AF}</ProjectGuid>
+		<OutputType>WinExe</OutputType>
+		<RootNamespace>FuryControllerService</RootNamespace>
+		<AssemblyName>FuryControllerService</AssemblyName>
+		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+		<FileAlignment>512</FileAlignment>
+		<TargetFramework>net472</TargetFramework>
+		<Prefer32Bit>True</Prefer32Bit>
+	</PropertyGroup>
+	<PropertyGroup>
+		<EnableDefaultItems>True</EnableDefaultItems>
+	</PropertyGroup>
+	<PropertyGroup>
+		<ApplicationManifest>app.manifest</ApplicationManifest>
+		<StartupObject>FuryControllerService.Program</StartupObject>
+	</PropertyGroup>
+	<ItemGroup>
+		<EmbeddedResource Include="FuryController_Service.resources" />
+	</ItemGroup>
+	<ItemGroup>
+		<Reference Include="CustomMarshalers" />
+		<Reference Include="System.Core" />
+		<Reference Include="System.Management" />
+		<Reference Include="System.ServiceProcess" />
+		<Reference Include="System.Web.Extensions" />
+		<Reference Include="websocket-sharp">
+			<HintPath>dlls\websocket-sharp.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="app.manifest" />
+	</ItemGroup>
+	
+	<!-- including dlls in a subfolder that get copied to bin root
+		https://stackoverflow.com/questions/18743907/visual-studio-how-to-copy-to-output-directory-without-copying-the-folder-stru/77000434#77000434 
+	-->
+	<ItemGroup>
+		<None Update="dlls/*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>%(Filename)%(Extension)</TargetPath>
+		</None>
+		<None Update="scripts/*">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<TargetPath>%(Filename)%(Extension)</TargetPath>
+		</None>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="scripts\" />
+	</ItemGroup>
 </Project>

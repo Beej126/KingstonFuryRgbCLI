@@ -25,9 +25,8 @@ namespace FuryControllerService
 				IntPtr intPtr3 = Native.OpenMutex(2031617U, false, name);
 				if (intPtr3 == IntPtr.Zero)
 				{
-					Native.SECURITY_DESCRIPTOR security_DESCRIPTOR;
-					int num;
-					if (!Native.InitializeSecurityDescriptor(out security_DESCRIPTOR, 1U))
+                    int num;
+                    if (!Native.InitializeSecurityDescriptor(out Native.SECURITY_DESCRIPTOR security_DESCRIPTOR, 1U))
 					{
 						num = Marshal.GetLastWin32Error();
 						throw new Class_Mutex.MutexCreationException(string.Format("Failed to initialize security descriptor. Win32 error num: '{0}'", num));
@@ -37,7 +36,7 @@ namespace FuryControllerService
 						num = Marshal.GetLastWin32Error();
 						throw new Class_Mutex.MutexCreationException(string.Format("Failed to set security descriptor DACL. Win32 error num: '{0}'", num));
 					}
-					Native.SECURITY_ATTRIBUTES security_ATTRIBUTES = default(Native.SECURITY_ATTRIBUTES);
+					Native.SECURITY_ATTRIBUTES security_ATTRIBUTES = default;
 					security_ATTRIBUTES.nLength = Marshal.SizeOf<Native.SECURITY_ATTRIBUTES>(security_ATTRIBUTES);
 					security_ATTRIBUTES.bInheritHandle = 1;
 					intPtr2 = Marshal.AllocCoTaskMem(Marshal.SizeOf<Native.SECURITY_DESCRIPTOR>(security_DESCRIPTOR));
@@ -45,7 +44,7 @@ namespace FuryControllerService
 					security_ATTRIBUTES.lpSecurityDescriptor = intPtr2;
 					intPtr = Marshal.AllocCoTaskMem(Marshal.SizeOf<Native.SECURITY_ATTRIBUTES>(security_ATTRIBUTES));
 					Marshal.StructureToPtr<Native.SECURITY_ATTRIBUTES>(security_ATTRIBUTES, intPtr, false);
-					intPtr3 = Native.CreateMutex(intPtr, initiallyOwned > false, name);
+					intPtr3 = Native.CreateMutex(intPtr, initiallyOwned, name);
 					num = Marshal.GetLastWin32Error();
 					if (intPtr3 == IntPtr.Zero)
 					{
@@ -59,18 +58,17 @@ namespace FuryControllerService
 				}
 				else
 				{
-					Native.SECURITY_DESCRIPTOR security_DESCRIPTOR2;
-					if (!Native.InitializeSecurityDescriptor(out security_DESCRIPTOR2, 1U))
-					{
-						int num = Marshal.GetLastWin32Error();
-						throw new Class_Mutex.MutexCreationException(string.Format("Failed to initialize security descriptor. Win32 error num: '{0}'", num));
-					}
-					if (!Native.SetSecurityDescriptorDacl(ref security_DESCRIPTOR2, true, IntPtr.Zero, false))
+                    if (!Native.InitializeSecurityDescriptor(out Native.SECURITY_DESCRIPTOR security_DESCRIPTOR2, 1U))
+                    {
+                        int num = Marshal.GetLastWin32Error();
+                        throw new Class_Mutex.MutexCreationException(string.Format("Failed to initialize security descriptor. Win32 error num: '{0}'", num));
+                    }
+                    if (!Native.SetSecurityDescriptorDacl(ref security_DESCRIPTOR2, true, IntPtr.Zero, false))
 					{
 						int num = Marshal.GetLastWin32Error();
 						throw new Class_Mutex.MutexCreationException(string.Format("Failed to set security descriptor DACL. Win32 error num: '{0}'", num));
 					}
-					Native.SECURITY_ATTRIBUTES security_ATTRIBUTES2 = default(Native.SECURITY_ATTRIBUTES);
+					Native.SECURITY_ATTRIBUTES security_ATTRIBUTES2 = default;
 					security_ATTRIBUTES2.nLength = Marshal.SizeOf<Native.SECURITY_ATTRIBUTES>(security_ATTRIBUTES2);
 					security_ATTRIBUTES2.bInheritHandle = 0;
 					intPtr2 = Marshal.AllocCoTaskMem(Marshal.SizeOf<Native.SECURITY_DESCRIPTOR>(security_DESCRIPTOR2));

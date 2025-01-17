@@ -39,7 +39,7 @@ namespace TaskScheduler
 		// Token: 0x17000061 RID: 97
 		// (get) Token: 0x060001DE RID: 478
 		[DispId(0)]
-		[IndexerName("TargetServer")]
+		//[IndexerName("TargetServer")]
 		string TargetServer
 		{
 			[DispId(0)]

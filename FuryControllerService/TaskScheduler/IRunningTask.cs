@@ -19,7 +19,7 @@ namespace TaskScheduler
 		// Token: 0x1700005B RID: 91
 		// (get) Token: 0x060001C6 RID: 454
 		[DispId(0)]
-		[IndexerName("InstanceGuid")]
+		//[IndexerName("InstanceGuid")]
 		string InstanceGuid
 		{
 			[DispId(0)]

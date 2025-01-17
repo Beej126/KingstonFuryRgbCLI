@@ -19,7 +19,7 @@ namespace FuryControllerService
 			{
 				if (e != null && !string.IsNullOrEmpty(e.Data))
 				{
-					string text = FuryContorller_Service.MainWindow_OnRequestFromClient(StringEncryptDecrypt.Decrypt(e.Data, "3m23s45i599"));
+					string text = FuryController_Service.MainWindow_OnRequestFromClient(StringEncryptDecrypt.Decrypt(e.Data, "3m23s45i599"));
 					if (!string.IsNullOrEmpty(text))
 					{
 						base.Send(StringEncryptDecrypt.Encrypt(text, "3m23s45i599"));

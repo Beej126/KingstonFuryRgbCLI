@@ -20,7 +20,7 @@ namespace TaskScheduler
 		// Token: 0x060001C0 RID: 448
 		[DispId(-4)]
 		[MethodImpl(MethodImplOptions.InternalCall, MethodCodeType = MethodCodeType.Runtime)]
-		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler)]
-		IEnumerator GetEnumerator();
+		[return: MarshalAs(UnmanagedType.CustomMarshaler, MarshalTypeRef = typeof(System.Runtime.InteropServices.CustomMarshalers.EnumeratorToEnumVariantMarshaler))]
+        new IEnumerator GetEnumerator();
 	}
 }
