@@ -1,0 +1,25 @@
+name: test release notes
+
+on:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+
+    # https://github.com/marketplace/actions/release-changelog-builder
+    - name: Generate release notes
+      id: releaseNotes
+      uses: mikepenz/release-changelog-builder-action@v5
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        mode: "COMMIT"
+        outputFile: notes.md
+
+    - name: output generated notes
+      run: cat notes.md

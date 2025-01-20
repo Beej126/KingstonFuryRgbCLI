@@ -1,0 +1,86 @@
+# list of components loaded on the windows-latest runners:
+#   https://github.com/actions/runner-images/blob/main/images/windows/Windows2025-Readme.md
+
+# working with github's variables:
+#   https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/accessing-contextual-information-about-workflow-runs#github-context
+#   https://stackoverflow.com/questions/62803531/repository-name-as-a-github-action-environment-variable/62805013#62805013
+
+# workflow samples:
+#  gh release - https://github.com/ruby/ruby-dev-builder/blob/b0bf59a17c17985d4692243d4689c273f6348fa5/.github/workflows/build.yml#L177-L181
+#  .net framework - https://timheuer.com/blog/building-net-framework-apps-using-github-actions/
+
+# nugget: important one time setup thingies outside of what's in this file:
+# - to allow GitTool:GitReleaseManager to access build artifact: Settings > Actions > General > Workflow Permissions > Read and Write Permissions
+#   from: https://stackoverflow.com/questions/70435286/resource-not-accessible-by-integration-on-github-post-repos-owner-repo-ac/75250838#75250838
+
+name: build and release
+
+on:
+  #push:
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # https://github.com/secondbounce/assemblyinfo-update
+    # creates variable: steps.assemblyVersion.outputs.version
+    - name: Bump AssemblyInfo.cs version numbers
+      id: assemblyVersion
+      uses: secondbounce/assemblyinfo-update@v2 
+      with:
+        version: 1.0.0 #this gets suffixed with github.run_number
+        directory: ./KingstonFuryRgbCLI/Properties
+        filename: AssemblyInfo.cs
+        recursive: false
+    
+    # https://github.com/microsoft/setup-msbuild
+    # amazingly msft internal team refuses to have this in the default path on windows runners:
+    #   https://github.com/orgs/community/discussions/25540#discussioncomment-3248262
+    - name: Add MSBuild.exe to PATH
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Build solution & zip up binaries
+      id: buildAsset
+      run: |
+        echo -- check assembly_info.cs -----------------------------------------------------
+        cat KingstonFuryRgbCLI/Properties/AssemblyInfo.cs
+        echo -- msbuild --------------------------------------------------------------------
+        msbuild KingstonFuryRgbCLI.sln -t:restore,build -property:Configuration=Release
+        echo -- 7zip -----------------------------------------------------------------------
+        # create step outputs in pwsh: https://stackoverflow.com/questions/69099977/using-outputs-of-powershell-in-github-actions/75630489#75630489
+        $assetFileName="${{ github.event.repository.name }}_v${{ steps.assemblyVersion.outputs.version }}.zip"
+        Write-Output "assetFileName=$($assetFileName)" >> $Env:GITHUB_OUTPUT
+        # change down into the nested folder so 7-zip doesn't include the nested path in the archive
+        #   apparently 7-zip doesn't have a parameter to do this!?
+        cd KingstonFuryRgbCLI\bin\Release\net481
+        # 7-zip is the native zip tool present on windows based runners
+        7z a "${{ github.workspace }}/$($assetFileName)" *.*
+
+    # https://github.com/marketplace/actions/release-changelog-builder
+    - name: Generate release notes
+      id: releaseNotes
+      uses: mikepenz/release-changelog-builder-action@v5
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        mode: "COMMIT" # builds list of commits since last release tag
+        outputFile: notes.md
+
+    # https://cli.github.com/manual/
+    - name: Create release (with zip asset)
+      env:
+        GH_TOKEN: ${{ github.token }}
+        GH_REPO: ${{ github.repository }}
+      # the first argument to `gh release create` is the TAG that will be created and applied to this new release
+      run: |
+        gh release create v${{ steps.assemblyVersion.outputs.version }} ${{ steps.buildAsset.outputs.assetFileName }} --notes-file notes.md
