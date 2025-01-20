@@ -18,23 +18,23 @@ namespace KingstonFuryRgbCLI
         // Token: 0x06000177 RID: 375 RVA: 0x0000F9A4 File Offset: 0x0000DBA4
         public static void LibLogWriter(string sMessage, bool bFailed = false)
         {
-            Log.sLibLogPath = string.Format("{0}\\Log\\Server_{1}.log", AppDomain.CurrentDomain.BaseDirectory, DateTime.Now.ToString("MM_dd_yyyy"));
-            if (!File.Exists(Log.sLibLogPath))
-            {
-                Directory.CreateDirectory(string.Format("{0}\\Log\\", AppDomain.CurrentDomain.BaseDirectory));
-                using (File.Create(Log.sLibLogPath))
-                {
-                    goto IL_00A6;
-                }
-            }
-            FileInfo fileInfo = new FileInfo(Log.sLibLogPath);
-            if (fileInfo.Exists && fileInfo.Length > (long)Log.Log_MaxSize)
-            {
-                fileInfo.Delete();
-                using (File.Create(Log.sLibLogPath))
-                {
-                }
-            }
+            //Log.sLibLogPath = string.Format("{0}\\Log\\Server_{1}.log", AppDomain.CurrentDomain.BaseDirectory, DateTime.Now.ToString("MM_dd_yyyy"));
+            //if (!File.Exists(Log.sLibLogPath))
+            //{
+            //    Directory.CreateDirectory(string.Format("{0}\\Log\\", AppDomain.CurrentDomain.BaseDirectory));
+            //    using (File.Create(Log.sLibLogPath))
+            //    {
+            //        goto IL_00A6;
+            //    }
+            //}
+            //FileInfo fileInfo = new FileInfo(Log.sLibLogPath);
+            //if (fileInfo.Exists && fileInfo.Length > (long)Log.Log_MaxSize)
+            //{
+            //    fileInfo.Delete();
+            //    using (File.Create(Log.sLibLogPath))
+            //    {
+            //    }
+            //}
 
         IL_00A6:
             //makes sure Console.WriteLine's have somewhere to go =)
@@ -43,41 +43,41 @@ namespace KingstonFuryRgbCLI
             object liblocker = Log.Liblocker;
             lock (liblocker)
             {
-                TextWriter textWriter = TextWriter.Synchronized(File.AppendText(Log.sLibLogPath));
+                //TextWriter textWriter = TextWriter.Synchronized(File.AppendText(Log.sLibLogPath));
                 if (bFailed)
                 {
                     Console.WriteLine(string.Format("{0} | [ERROR] {1}", DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss.fff"), sMessage));
-                    textWriter.WriteLine(string.Format("{0} | [ERROR] {1}", DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss.fff"), sMessage));
+                    //textWriter.WriteLine(string.Format("{0} | [ERROR] {1}", DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss.fff"), sMessage));
                 }
                 else
                 {
                     Console.WriteLine(string.Format("{0} | {1}", DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss.fff"), sMessage));
-                    textWriter.WriteLine(string.Format("{0} | {1}", DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss.fff"), sMessage));
+                    //textWriter.WriteLine(string.Format("{0} | {1}", DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss.fff"), sMessage));
                 }
-                textWriter.Flush();
-                textWriter.Dispose();
-                textWriter.Close();
+                //textWriter.Flush();
+                //textWriter.Dispose();
+                //textWriter.Close();
             }
         }
 
         // Token: 0x06000178 RID: 376 RVA: 0x0000FB54 File Offset: 0x0000DD54
         public static void LibCmdLogWriter(string sMessage, bool bFailed = false)
         {
-            Log.sLibCmdLogPath = string.Format("{0}\\Log\\FuryCtrl_{1}.log", AppDomain.CurrentDomain.BaseDirectory, DateTime.Now.ToString("MM_dd_yyyy"));
-            if (!File.Exists(Log.sLibCmdLogPath))
-            {
-                Directory.CreateDirectory(string.Format("{0}\\Log\\", AppDomain.CurrentDomain.BaseDirectory));
-                using (File.Create(Log.sLibCmdLogPath))
-                {
-                    goto IL_00A6;
-                }
-            }
-            FileInfo fileInfo = new FileInfo(Log.sLibCmdLogPath);
-            if (fileInfo.Exists && fileInfo.Length > (long)Log.Log_MaxSize)
-            {
-                fileInfo.Delete();
-                using (File.Create(Log.sLibCmdLogPath)) {}
-            }
+            //Log.sLibCmdLogPath = string.Format("{0}\\Log\\FuryCtrl_{1}.log", AppDomain.CurrentDomain.BaseDirectory, DateTime.Now.ToString("MM_dd_yyyy"));
+            //if (!File.Exists(Log.sLibCmdLogPath))
+            //{
+            //    Directory.CreateDirectory(string.Format("{0}\\Log\\", AppDomain.CurrentDomain.BaseDirectory));
+            //    using (File.Create(Log.sLibCmdLogPath))
+            //    {
+            //        goto IL_00A6;
+            //    }
+            //}
+            //FileInfo fileInfo = new FileInfo(Log.sLibCmdLogPath);
+            //if (fileInfo.Exists && fileInfo.Length > (long)Log.Log_MaxSize)
+            //{
+            //    fileInfo.Delete();
+            //    using (File.Create(Log.sLibCmdLogPath)) {}
+            //}
 
         IL_00A6:
 
@@ -87,20 +87,20 @@ namespace KingstonFuryRgbCLI
             object liblocker = Log.Liblocker;
             lock (liblocker)
             {
-                TextWriter textWriter = TextWriter.Synchronized(File.AppendText(Log.sLibCmdLogPath));
+                //TextWriter textWriter = TextWriter.Synchronized(File.AppendText(Log.sLibCmdLogPath));
                 if (bFailed)
                 {
                     Console.WriteLine(string.Format("{0} | [ERROR] {1}", DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss.fff"), sMessage));
-                    textWriter.WriteLine(string.Format("{0} | [ERROR] {1}", DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss.fff"), sMessage));
+                    //textWriter.WriteLine(string.Format("{0} | [ERROR] {1}", DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss.fff"), sMessage));
                 }
                 else
                 {
                     Console.WriteLine(string.Format("{0} | {1}", DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss.fff"), sMessage));
-                    textWriter.WriteLine(string.Format("{0} | {1}", DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss.fff"), sMessage));
+                    //textWriter.WriteLine(string.Format("{0} | {1}", DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss.fff"), sMessage));
                 }
-                textWriter.Flush();
-                textWriter.Dispose();
-                textWriter.Close();
+                //textWriter.Flush();
+                //textWriter.Dispose();
+                //textWriter.Close();
             }
         }
 

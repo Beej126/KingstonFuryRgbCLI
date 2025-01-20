@@ -301,19 +301,21 @@ namespace KingstonFuryRgbCLI
         // Token: 0x06000189 RID: 393 RVA: 0x00010778 File Offset: 0x0000E978
         private bool CheckExpireTime()
         {
-            if (Version.Parse(FuryController_Service.sAppVersion).CompareTo(Version.Parse("1.0.0.01")) >= 0)
-            {
-                Log.LibCmdLogWriter("Release version.", false);
+            //hack note: disabling version/date expire check
+
+            //if (Version.Parse(FuryController_Service.sAppVersion).CompareTo(Version.Parse("1.0.0.01")) >= 0)
+            //{
+                Log.LibCmdLogWriter("version: " + FuryController_Service.sAppVersion, false);
                 return true;
-            }
-            DateTime dateTime = new DateTime(2024, 4, 31);
-            Log.LibCmdLogWriter(string.Format("Beta version. ({0})", dateTime.ToString("MMdd.yyyy")), false);
-            if (DateTime.Now - dateTime < TimeSpan.FromDays(90.0))
-            {
-                return true;
-            }
-            Log.LibCmdLogWriter("Access denied.", false);
-            return false;
+            //}
+            //DateTime dateTime = new DateTime(2024, 4, 31);
+            //Log.LibCmdLogWriter(string.Format("Beta version. ({0})", dateTime.ToString("MMdd.yyyy")), false);
+            //if (DateTime.Now - dateTime < TimeSpan.FromDays(90.0))
+            //{
+            //    return true;
+            //}
+            //Log.LibCmdLogWriter("Access denied.", false);
+            //return false;
         }
 
         // Token: 0x0600018A RID: 394 RVA: 0x00010808 File Offset: 0x0000EA08
@@ -1507,7 +1509,8 @@ namespace KingstonFuryRgbCLI
         // Token: 0x0600018E RID: 398 RVA: 0x00013CD8 File Offset: 0x00011ED8
         private bool CheckFURYCTRLrunning()
         {
-            return Process.GetProcessesByName("FURYCTRL").Length != 0;
+            //hack notes: this drives the check to load settings from .log files
+            return true; //Process.GetProcessesByName("FURYCTRL").Length != 0;
         }
 
         // Token: 0x0600018F RID: 399 RVA: 0x00013CEC File Offset: 0x00011EEC

@@ -17,7 +17,11 @@
 	<PropertyGroup>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
 		<StartupObject>KingstonFuryRgbCLI.Program</StartupObject>
+		<ApplicationIcon>scripts\FURY_CTRL_32512.ico</ApplicationIcon>
 	</PropertyGroup>
+	<ItemGroup>
+	  <Content Include="scripts\FURY_CTRL_32512.ico" />
+	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="CustomMarshalers" />
 		<Reference Include="System.Core" />
@@ -40,8 +44,5 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<TargetPath>%(Filename)%(Extension)</TargetPath>
 		</None>
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="scripts\" />
 	</ItemGroup>
 </Project>
