@@ -30,8 +30,18 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
+        # _____                         _____                           _              _   
+        #/  ___|                       |_   _|                         | |            | |  
+        #\ `--. _   _ _ __   ___ _ __    | | _ __ ___  _ __   ___  _ __| |_ __ _ _ __ | |_ 
+        # `--. \ | | | '_ \ / _ \ '__|   | || '_ ` _ \| '_ \ / _ \| '__| __/ _` | '_ \| __|
+        #/\__/ / |_| | |_) |  __/ |     _| || | | | | | |_) | (_) | |  | || (_| | | | | |_ 
+        #\____/ \__,_| .__/ \___|_|     \___/_| |_| |_| .__/ \___/|_|   \__\__,_|_| |_|\__|
+        #            | |                              | |                                  
+        #            |_|                              |_|                                  
+        # for release notes to be able to query into the tags data!!
         fetch-depth: 0
-
+        fetch-tags: true
+        
     # https://github.com/secondbounce/assemblyinfo-update
     # creates variable: steps.assemblyVersion.outputs.version
     - name: Bump AssemblyInfo.cs version numbers
